@@ -2,17 +2,12 @@ html
   head
     title= title
     script(src="/javascripts/jquery.min.js")
+    script(src="/javascripts/react.min.js")
+    script(src="/javascripts/JSXTransformer.min.js")
     script(src="/socket.io/socket.io.js")
-    style.
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      #messages { list-style-type: none; margin: 0; padding: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
+    script(src="/javascripts/app.js" type="text/jsx")
   body
-    ul#messages
-    input#m
-    a#submit(href="#") Send
+    #content
 
     script(type='text/javascript').
       var socket = io.connect("http://localhost:8080");

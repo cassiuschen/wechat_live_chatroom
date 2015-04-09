@@ -6,6 +6,7 @@
   "indent": 2,
   "quotmark": "single",
   "globals": {
-    "jQuery": true
+    "jQuery": true,
+    "React": true
   }
 }

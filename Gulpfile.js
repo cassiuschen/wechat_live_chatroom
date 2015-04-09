@@ -59,9 +59,6 @@ gulp.task('coffee', function() {
 gulp.task('js', function() {
   gulp.src('./src/javascripts/*.js')
     .pipe(gulp.dest('public/javascripts'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest('public/javascripts'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
@@ -83,9 +80,8 @@ gulp.task('image', function() {
 var libs = {
     js: [
         "vendor/assets/jquery/dist/jquery.js",
-        "vendor/assets/angular/angular.js",
-        "vendor/assets/angular-route/angular-route.js",
-        "vendor/assets/angular-sanitize/angular-sanitize.js"
+        "vendor/assets/react/react.js",
+        "vendor/assets/react/JSXTransformer.js"
     ],
     css: [
     ],
