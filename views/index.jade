@@ -1,0 +1,26 @@
+html
+  head
+    title= title
+    script(src="/javascripts/jquery.min.js")
+    script(src="/socket.io/socket.io.js")
+    style.
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+  body
+    ul#messages
+    input#m
+    a#submit(href="#") Send
+
+    script(type='text/javascript').
+      var socket = io.connect("http://localhost:8080");
+      $('a#submit').on('click', function(){
+        socket.emit('message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+      socket.on('message', function(msg){
+        $('#messages').append($('<li>').text(msg));
+      });

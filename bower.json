@@ -1,0 +1,16 @@
+{
+  "name": "NewsApp",
+  "version": "0.0.1",
+  "authors": [
+    "cassiuschen <chzsh1995@gmail.com>"
+  ],
+  "main": "[\"public/assets/css/application.css\", \"public/assets/js/application.js\", \"public/assets/js/controller.js\", \"public/assets/js/services.js\"]",
+  "license": "GPL v3",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.13",
+    "angular-route": "~1.3.13",
+    "angular-sanitize": "~1.3.13",
+    "jquery": "~2.1.3"
+  }
+}
