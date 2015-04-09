@@ -25,19 +25,8 @@ var MessageBox = React.createClass({
       }.bind(this)
     });
   },
-  handleCommentSubmit: function(comment) {
-    $.ajax({
-      url: this.props.url,
-      dataType: 'json',
-      type: 'POST',
-      data: comment,
-      success: function(data) {
-        this.setState({data: data});
-      }.bind(this),
-      error: function(xhr, status, err) {
-        console.error(this.props.url, status, err.toString());
-      }.bind(this)
-    });
+  handleMessageSubmit: function(message) {
+    socket.emit('message', message);
   },
   getInitialState: function() {
     socket.on('message', this.messageRecieve);
@@ -57,7 +46,7 @@ var MessageBox = React.createClass({
       <div className="messageBox">
         <h1>Messages</h1>
         <MessageList data={this.state.data} />
-        <MessageForm onMessageSubmit={this.handleCommentSubmit}/>
+        <MessageForm onMessageSubmit={this.handleMessageSubmit}/>
       </div>
     );
   }

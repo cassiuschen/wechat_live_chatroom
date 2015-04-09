@@ -54,5 +54,6 @@ io.on 'connection', (socket) ->
 
 	socket.on 'message', (msg) ->
 		console.log "MESSAGE: #{msg}"
+		console.log 'SAVING DATA'
 		io.emit('message', msg)
 
