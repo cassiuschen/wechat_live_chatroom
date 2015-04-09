@@ -5,7 +5,10 @@ io = require('socket.io')(server)
 redisServer = require 'redis'
 redis = redisServer.createClient(6379, '127.0.0.1', {})
 
-
+data = [
+  {author: "Pete Hunt", text: "This is one comment"},
+  {author: "Jordan Walke", text: "This is *another* comment"}
+]
 
 # Configure
 app.engine 'jade', require('jade').__express
@@ -29,18 +32,20 @@ redis.on 'ready', (err) ->
 redis.on 'error', (err) ->
 	console.log "Redis ERROR: #{err}"
 
-app.get '/', (req, res) ->
-	res.render 'index',
-		title: "hello world"
-		msg: "Hello World!!!"
-
-app.get '/message', (req, res) ->
-	if req.query.content
-		io.emit('message', req.query.content)
-		console.log 'Add Message:' + req.query.content
-		res.status(200).end()
-	else
-		res.status(400).end()
+app
+	.get '/', (req, res) ->
+		res.render 'index',
+			title: "hello world"
+			msg: "Hello World!!!"
+	.get '/messages.json', (req, res) ->
+		res.json data
+	.get '/message', (req, res) ->
+		if req.query.content
+			io.emit('message', {author: 'from server', text: req.query.content})
+			console.log 'Add Message:' + req.query.content
+			res.status(200).end()
+		else
+			res.status(400).end()
 
 io.on 'connection', (socket) ->
 	console.log 'Login a User'
